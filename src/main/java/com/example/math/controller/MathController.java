@@ -1,7 +1,9 @@
 package com.example.math.controller;
 
+import com.example.Ratio;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.service.IntegerServiceImpl;
 import java.util.ArrayList;
@@ -40,5 +42,20 @@ public class MathController {
         ArrayList<Integer> primeFactors = impl.getPrimeFactorsOf(integer);
         return String.valueOf(primeFactors);
     }
+
+    @ResponseBody
+    @RequestMapping("/getAddedRatio")
+    public String getAddedRatio(
+            @RequestParam("denominator1") Integer denominator1,
+            @RequestParam("numerator1") Integer numerator1,
+            @RequestParam("denominator2") Integer denominator2,
+            @RequestParam("numerator2") Integer numerator2) {
+        IntegerServiceImpl impl = new IntegerServiceImpl();
+        Ratio r1 = new Ratio(denominator1, numerator1);
+        Ratio r2 = new Ratio(denominator2, numerator2);
+        return r1.getAddedRatio(r2).toString();
+    }
+
+
 
 }

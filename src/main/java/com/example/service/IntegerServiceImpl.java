@@ -1,6 +1,8 @@
 package com.example.service;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import com.example.Ratio;
 import org.springframework.stereotype.Service;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
@@ -79,7 +81,8 @@ public class IntegerServiceImpl implements IntegerService {
     }
 
     public ArrayList<Integer> getPrimeFactorsOf(int integer) {
-        ArrayList<Integer> divisorCandidates = this.getPrimeNumsUnder((int)Math.floor(Math.sqrt(integer)));
+        ArrayList<Integer> divisorCandidates =
+                this.getPrimeNumsUnder((int)Math.floor(Math.sqrt(integer)));
 		ArrayList<Integer> primeFactors = new ArrayList<Integer>();
 		for(int i = 0;;) {
             Integer testDivideInteger = divisorCandidates.get(i);
@@ -96,6 +99,12 @@ public class IntegerServiceImpl implements IntegerService {
 		}
 		return primeFactors;
 	}
+
+    @Override
+    public Ratio addBetweenRatio(Ratio r1, Ratio r2) {
+        return r1.getAddedRatio(r1);
+    }
+
 
     //お試しで書いている。
     public String getStringForMathJaxAboutCayleyTableFrom(int input, int output) {
