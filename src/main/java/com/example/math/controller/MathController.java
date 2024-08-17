@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PostMapping;
+
 import com.example.service.IntegerServiceImpl;
 import java.util.ArrayList;
 
@@ -43,10 +45,8 @@ public class MathController {
         return String.valueOf(primeFactors);
     }
 
-    @ResponseBody
-    @PostMapping("/getAddedRatio")
-    public String getAddedRatio(
-            @RequestParam("denominator1") Integer denominator1,
+   @ResponseBody@PostMapping("/getAddedRatio")public String getAddedRatio(
+        @RequestParam("denominator1") Integer denominator1,
             @RequestParam("numerator1") Integer numerator1,
             @RequestParam("denominator2") Integer denominator2,
             @RequestParam("numerator2") Integer numerator2) {
