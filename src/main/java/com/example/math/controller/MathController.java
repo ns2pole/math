@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.Map;
 import com.example.service.IntegerServiceImpl;
 import java.util.ArrayList;
@@ -46,12 +47,15 @@ public class MathController {
         return String.valueOf(primeFactors);
     }
 
+    @CrossOrigin(origins = "*") // すべてのオリジンを許可
    @ResponseBody@PostMapping("/getAddedRatio")public String getAddedRatio(
         @RequestBody Map<String, Map<String, Integer>> fractions) {
         Map<String, Integer> fraction1 = fractions.get("fraction1");
         Map<String, Integer> fraction2 = fractions.get("fraction2");
         Ratio r1 = new Ratio(fraction1.get("denominator"), fraction1.get("numerator"));
         Ratio r2 = new Ratio(fraction2.get("denominator"), fraction2.get("numerator"));
+        System.out.println(r1);
+        System.out.println(r2);
         return r1.getAddedRatio(r2).toString();
     }
 
