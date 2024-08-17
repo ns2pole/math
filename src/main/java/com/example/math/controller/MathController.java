@@ -47,7 +47,7 @@ public class MathController {
         return String.valueOf(primeFactors);
     }
 
-    // @CrossOrigin(origins = "*") // すべてのオリジンを許可
+    @CrossOrigin(origins = "*") // すべてのオリジンを許可
    @ResponseBody@PostMapping("/getAddedRatio")public String getAddedRatio(
         @RequestBody Map<String, Map<String, Integer>> fractions) {
         Map<String, Integer> fraction1 = fractions.get("fraction1");
