@@ -44,7 +44,7 @@ public class MathController {
     }
 
     @ResponseBody
-    @RequestMapping("/getAddedRatio")
+    @PostMapping("/getAddedRatio")
     public String getAddedRatio(
             @RequestParam("denominator1") Integer denominator1,
             @RequestParam("numerator1") Integer numerator1,
@@ -55,7 +55,5 @@ public class MathController {
         Ratio r2 = new Ratio(denominator2, numerator2);
         return r1.getAddedRatio(r2).toString();
     }
-
-
 
 }
