@@ -46,13 +46,11 @@ public class MathController {
     }
 
    @ResponseBody@PostMapping("/getAddedRatio")public String getAddedRatio(
-        @RequestParam("denominator1") Integer denominator1,
-            @RequestParam("numerator1") Integer numerator1,
-            @RequestParam("denominator2") Integer denominator2,
-            @RequestParam("numerator2") Integer numerator2) {
-        IntegerServiceImpl impl = new IntegerServiceImpl();
-        Ratio r1 = new Ratio(denominator1, numerator1);
-        Ratio r2 = new Ratio(denominator2, numerator2);
+        @RequestBody Map<String, Map<String, Integer>> fractions) {
+        Map<String, Integer> fraction1 = fractions.get("fraction1");
+        Map<String, Integer> fraction2 = fractions.get("fraction2");
+        Ratio r1 = new Ratio(fraction1.get("denominator"), fraction1.get("numerator"));
+        Ratio r2 = new Ratio(fraction2.get("denominator"), fraction2.get("numerator"));
         return r1.getAddedRatio(r2).toString();
     }
 
