@@ -61,8 +61,9 @@ public class MathController {
 
     @CrossOrigin(origins = "*") // すべてのオリジンを許可
     @ResponseBody@PostMapping("/getRecurringDecimal")public String getRecurringDecimal(
-            @RequestBody Map<String, Integer> fraction) {
-        Ratio r1 = new Ratio(fraction.get("denominator"), fraction.get("numerator"));
+            @RequestBody Map<String, Integer> ratio) {
+        System.out.println(ratio);
+        Ratio r1 = new Ratio(ratio.get("denominator"), ratio.get("numerator"));
         return r1.getRecurringDecimal();
     }
 
