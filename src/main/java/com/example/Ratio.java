@@ -1,4 +1,7 @@
 package com.example;
+
+import java.util.ArrayList;
+
 public class Ratio {
     private int denominator;
     private int numerator;
@@ -67,6 +70,36 @@ public class Ratio {
         int minusedNumerator = firstNumerator - secondNumerator;
         Ratio minusedRatio = new Ratio(minusedDenominator,minusedNumerator);
         return minusedRatio.getIrreducibleRatio();
+    }
+
+    public String getRecurringDecimal() {
+		int remainder = this.numerator % this.denominator;
+		int firstRemainder = this.numerator % this.denominator;
+		ArrayList<Integer> decimals = new ArrayList<Integer>();
+		decimals.add(IntArrayListUtil.tenTimeAndDivide(remainder, this.denominator));
+		remainder = IntArrayListUtil.getRemainderForTentimes(remainder, this.denominator);
+		//分母が2と5の時のみ割り切れるので空を返す
+		if(hasOnlyTwoOrFive(denominator) == true) {
+			return "";
+		}else {
+			while(remainder != firstRemainder) {
+			decimals.add(IntArrayListUtil.tenTimeAndDivide(remainder, denominator));
+			remainder = IntArrayListUtil.getRemainderForTentimes(remainder, denominator);
+		}
+		String result = ArrayListUtil.toString(decimals);
+		return result;
+		}
+	}
+
+    //3,7 -> false 4,5 ->true
+    protected boolean hasOnlyTwoOrFive(int num1) {
+        ArrayList<Integer> primeFactors = IntArrayListUtil.getPrimeFactorsOf(num1);
+        for(int i = 0;i < primeFactors.size();i++) {
+            if(primeFactors.get(i) != 2 && primeFactors.get(i) != 5) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

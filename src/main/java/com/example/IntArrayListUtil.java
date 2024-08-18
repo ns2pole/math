@@ -44,4 +44,17 @@ public class IntArrayListUtil {
         }
         return number;
     }
+
+    //3,7 ->30 / 7 -> 4
+    protected  static int tenTimeAndDivide(int num1, int num2) {
+        int result = num1 * 10 / num2;
+        return result;
+    }
+
+
+    //3,7 ->30 / 7 -> 2
+    protected static int getRemainderForTentimes(int num1, int num2) {
+        int result = num1 * 10 % num2;
+        return result;
+    }
 }

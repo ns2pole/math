@@ -74,4 +74,15 @@ public class ArrayListUtil {
         }
     }
 
+
+    public static <T> String toString(ArrayList<T> arr) {
+        String result = "";
+        for(int i = 1;i < arr.size();i++) {
+            result += arr.get(i).toString();
+            result += " ";
+        }
+        return result;
+    }
+
+
 }

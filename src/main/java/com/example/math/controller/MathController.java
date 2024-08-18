@@ -48,7 +48,7 @@ public class MathController {
     }
 
     @CrossOrigin(origins = "*") // すべてのオリジンを許可
-   @ResponseBody@PostMapping("/getAddedRatio")public String getAddedRatio(
+    @ResponseBody@PostMapping("/getAddedRatio")public String getAddedRatio(
         @RequestBody Map<String, Map<String, Integer>> fractions) {
         Map<String, Integer> fraction1 = fractions.get("fraction1");
         Map<String, Integer> fraction2 = fractions.get("fraction2");
@@ -58,5 +58,26 @@ public class MathController {
         System.out.println(r2);
         return r1.getAddedRatio(r2).toString();
     }
+
+    @CrossOrigin(origins = "*") // すべてのオリジンを許可
+    @ResponseBody@PostMapping("/getRecurringDecimal")public String getRecurringDecimal(
+            @RequestBody Map<String, Integer> fraction) {
+        Ratio r1 = new Ratio(fraction.get("denominator"), fraction.get("numerator"));
+        return r1.getRecurringDecimal();
+    }
+
+    //手計算では無理なものをやらせられると感動できる
+    //多変数多項式の和,差
+    //辞書式に降冪に並べて返す。
+    //hogehoge_getAddedにpost
+    //hogehoge_getProductにpost
+    //枠2つについて、onchangeで下部分にtex形式で表示。
+    //「計算」ボタンでapiにpost
+    //多変数多項式2つの情報を受け取る
+    //多変数多項式2つをnew
+    //計算して、多変数多項式に対応する文字列をreturn
+    //returnした文字列をフロントエンドで受ける
+    //tex形式で表示
+
 
 }
